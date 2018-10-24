@@ -8,24 +8,22 @@ library(xgboost)
 results<-read.csv('Data.csv',stringsAsFactor=F)
 str(results)
 
-#Players ranks are character. lets convert to numeric, & set NAs to 1000
+#set all NA to 1000 and converting rank to numeric
 results$WRank=as.numeric(results$WRank)
 results$LRank=as.numeric(results$LRank)
 results$WRank[is.na(results$WRank)]<-1000
 results$LRank[is.na(results$LRank)]<-1000
 
-#format the date, extract the Year
+#formatting the date
 results$Date=as.Date(results$Date,format='%d/%m/%Y')
 results$Year=as.numeric(format(results$Date,"%Y"))
-
-#some cleanup on tournament names. 
+ 
 regex=regexpr("Dubai ",results$Tournament)
 results$Tournament[regex!=-1]="Dubai Open"
 regex=regexpr("Valencia Open",results$Tournament)
 results$Tournament[regex!=-1]="Valencia Open"
 regex=regexpr("Buenos Aires",results$Tournament)
 results$Tournament[regex!=-1]="ATP Buenos Aires"
-#still lots of inconsistencies in tournament names. Will try to fix this in the future.
 
 #cleanup the Series names, convert to integer values equivalent to the ATP points of the series
 results$Series[results$Series %in% c("ATP250","International","International Series")] <-250
