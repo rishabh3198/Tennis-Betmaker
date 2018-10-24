@@ -32,7 +32,7 @@ Lsets = Number of sets won by match loser
 Comment = Comment on the match (Completed, won through retirement of loser, or via Walkover)
 
 
-Key to match betting odds data:
+Features used in match betting odds data:
 
 B365W = Bet365 odds of match winner
 B365L = Bet365 odds of match loser
